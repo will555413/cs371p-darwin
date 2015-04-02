@@ -15,7 +15,7 @@ private:
 	vector<string> _steps;
 public:
 	Species();
-	Species(char name, vector<string> steps);
+	Species(char name, const vector<string>& steps = vector<string>());
 	Species(const Species& rhs);
 
 	Species& operator=(const Species& s);
@@ -42,7 +42,7 @@ private:
 	 */
 	Species _sp;
 public:
-	Creature();
+	Creature(int direc = 0, const Species& sp = Species());
 	Creature(const Creature& c);
 	// Creature(const Species& sp);
 	Creature& operator=(const Creature& rhs);

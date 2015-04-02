@@ -5,14 +5,14 @@ using namespace std;
 // ----------------------
 // Creature class methods
 // ----------------------
-
-Creature::Creature():
-	_sp(){}
-
 Creature::Creature(const Creature& c):
 	_direc(c._direc),
 	_pc(c._pc),
 	_sp(c._sp){}
+
+Creature::Creature(int direc, const Species& sp):
+	_direc(direc),
+	_sp(sp){}
 
 Creature& Creature::operator=(const Creature& rhs){
 	_sp = rhs._sp;
@@ -76,7 +76,7 @@ void Creature::go(int i){
 
 Species::Species():
 	_name('.'){}
-Species::Species(char name, vector<string> steps):
+Species::Species(char name, const vector<string>& steps):
 	_name(name), 
 	_steps(steps){}
 Species::Species(const Species& rhs):
@@ -116,9 +116,13 @@ int Species::getprogsize() const{
 World::World(int r, int c){
 	this->r = r; 
 	this->c = c;
-	darwin = new Creature[r][c];
+	darwin = new Creature*[r];
+	for(int i=0;i<r;++i)
+		darwin[i] = new Creature[c];
 }
 World::~World(){
+	for(int i=0;i<r;++i)
+		delete [] darwin[i];
 	delete [] darwin;
 }
 

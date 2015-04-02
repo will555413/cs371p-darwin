@@ -12,7 +12,7 @@
 #include <cstdlib>   // rand, srand
 #include <iostream>  // cout, endl
 #include <stdexcept> // invalid_argument, out_of_range
-
+#include "Darwin.h" // header file
 
 // ----
 // main
@@ -29,6 +29,8 @@ int main () {
      0: left
      1: go 0
     */
+    vector<string> prog = {"left", "go 0"};
+    Species food('f', prog);
 
     // ------
     // hopper
@@ -38,6 +40,9 @@ int main () {
      0: hop
      1: go 0
     */
+
+    prog = {"hop", "go 0"};
+    Species hopper('h', prog);
 
     // -----
     // rover
@@ -57,6 +62,10 @@ int main () {
     10: go 0
     */
 
+    prog = {"if_enemy 9", "if_empty 7", "if_random 5", "left", "go 0"
+            "right","go 0","hop","go 0","infect", "go 0"};
+    Species rover('r', prog);
+
     // ----
     // trap
     // ----
@@ -68,6 +77,9 @@ int main () {
      3: infect
      4: go 0
     */
+
+    prog = {"if_enemy 3", "left", "go 0", "infect", "go 0"};
+    Species trap('t', prog);
 
     // ----------
     // darwin 8x8
@@ -85,6 +97,15 @@ int main () {
     Simulate 5 moves.
     Print every grid.
     */
+    World d1(8,8);
+    d1.addCreature(Creature(1,food),0,0);
+    d1.addCreature(Creature(0,hopper),3,3);
+    d1.addCreature(Creature(1,hopper),3,4);
+    d1.addCreature(Creature(2,hopper),4,4);
+    d1.addCreature(Creature(3,hopper),4,3);
+    d1.addCreature(Creature(0,food),7,7);
+    d1.print_grid(0,cout);
+
 
     // ----------
     // darwin 7x9
