@@ -29,8 +29,11 @@ int main () {
      0: left
      1: go 0
     */
-    vector<string> prog = {"left", "go 0"};
-    Species food('f', prog);
+    
+    Species food('f');
+    // vector<string> prog = {"left", "go 0"};
+    food.addstep("left");
+    food.addstep("go 0");
 
     // ------
     // hopper
@@ -41,8 +44,10 @@ int main () {
      1: go 0
     */
 
-    prog = {"hop", "go 0"};
-    Species hopper('h', prog);
+    // prog = {"hop", "go 0"};
+    Species hopper('h');
+    hopper.addstep("hop");
+    hopper.addstep("go 0");
 
     // -----
     // rover
@@ -62,9 +67,20 @@ int main () {
     10: go 0
     */
 
-    prog = {"if_enemy 9", "if_empty 7", "if_random 5", "left", "go 0"
-            "right","go 0","hop","go 0","infect", "go 0"};
-    Species rover('r', prog);
+    // prog = {"if_enemy 9", "if_empty 7", "if_random 5", "left", "go 0"
+            // "right","go 0","hop","go 0","infect", "go 0"};
+    Species rover('r');
+    rover.addstep("if_enemy 9");
+    rover.addstep("if_empty 7");
+    rover.addstep("if_random 5");
+    rover.addstep("left");
+    rover.addstep("go 0");
+    rover.addstep("right");
+    rover.addstep("go 0");
+    rover.addstep("hop");
+    rover.addstep("go 0");
+    rover.addstep("infect");
+    rover.addstep("go 0");
 
     // ----
     // trap
@@ -78,8 +94,13 @@ int main () {
      4: go 0
     */
 
-    prog = {"if_enemy 3", "left", "go 0", "infect", "go 0"};
-    Species trap('t', prog);
+    // prog = {"if_enemy 3", "left", "go 0", "infect", "go 0"};
+    Species trap('t');
+    trap.addstep("if_enemy 3");
+    trap.addstep("left");
+    trap.addstep("go 0");
+    trap.addstep("infect");
+    trap.addstep("go 0");
 
     // ----------
     // darwin 8x8
@@ -104,7 +125,7 @@ int main () {
     d1.addCreature(Creature(2,hopper),4,4);
     d1.addCreature(Creature(3,hopper),4,3);
     d1.addCreature(Creature(0,food),7,7);
-    d1.print_grid(0,cout);
+    d1.run(2);
 
 
     // ----------

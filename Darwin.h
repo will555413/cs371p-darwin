@@ -12,16 +12,16 @@ class Species{
 // variables
 private:
 	char _name;
-	vector<string> _steps;
+	vector<int> _steps;
 public:
 	Species();
-	Species(char name, const vector<string>& steps = vector<string>());
+	Species(char name, const vector<int>& steps = vector<int>());
 	Species(const Species& rhs);
 
 	Species& operator=(const Species& s);
 	bool operator==(const Species& s);
 	void addstep(string line);
-	const string& getstep(int i) const;
+	const int& getstep(int i) const;
 	const char& getname() const;
 	int getprogsize() const;
 };
@@ -49,12 +49,12 @@ public:
 	void turn_left();
 	void turn_right();
 	// replace current specie with new specie s
-	void get_infected(const Creature& c);
+	void infect(Creature& c) const;
 	// add 1 to _pc; reset when _pc > _sp.steps.size()
-	const string& getstep() const;
-	const char& getname() const;
-	const int& getdir() const;
-	bool isenemy(const Creature& target);
+	const char& getspecie() const;
+	bool isenemy(const Creature& target, bool wall);
+	bool isempty(const Creature& target, bool wall);
+	int my_turn(const bool* iswall, Creature** neighbor);
 	void go(int i);
 	//void hop();
 	// void infect();
@@ -69,10 +69,9 @@ public:
 	World(int r, int c);
 	~World();
 
-	void interpret(int x, int y, string step);
+	void interpret(int x, int y);
 	// implement hop/infect in interpret
 	// implement all controls
-	bool isempty(Creature x);
 	void addCreature(Creature c, int x, int y);
 	// run the world for m steps and print each grid
 	void run(int m);
