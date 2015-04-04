@@ -9,9 +9,13 @@
 using namespace std;
 
 class Species{
-// variables
 private:
+	/* name of the species as a char. 
+	 * Usually the initial of the specie's name
+	 */
 	char _name;
+	/* decoded program of a specie
+	 */
 	vector<int> _steps;
 public:
 	Species();
@@ -27,7 +31,6 @@ public:
 };
 
 class Creature{
-// variables
 private:
 	/* save the direction of a creature
 	 * 0 = North, 1 = East, 2 = South, 3 = West.
@@ -44,36 +47,30 @@ private:
 public:
 	Creature(int direc = 0, const Species& sp = Species());
 	Creature(const Creature& c);
-	// Creature(const Species& sp);
 	Creature& operator=(const Creature& rhs);
 	void turn_left();
 	void turn_right();
-	// replace current specie with new specie s
 	void infect(Creature& c) const;
-	// add 1 to _pc; reset when _pc > _sp.steps.size()
 	const char& getspecie() const;
 	bool isenemy(const Creature& target, bool wall);
 	bool isempty(const Creature& target, bool wall);
 	int my_turn(const bool* iswall, Creature** neighbor);
 	void go(int i);
-	//void hop();
-	// void infect();
 };
 
 class World{
-// variables
 private:
+	/* save the size of the world
+	 */
 	int r, c;
+	/* actual 2D array that represent the world
+	 */
 	Creature** darwin;
 public:
 	World(int r, int c);
 	~World();
-
-	void interpret(int x, int y);
-	// implement hop/infect in interpret
-	// implement all controls
+	void give_turn(int x, int y);
 	void addCreature(Creature c, int x, int y);
-	// run the world for m steps and print each grid
 	void run(int m);
 	void print_grid(int turn, ostream& out);
 };

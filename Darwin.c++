@@ -179,6 +179,13 @@ int Species::getprogsize() const{
 // World class methods
 // -------------------
 
+// -----
+// World
+// -----
+/* Constructor of World.
+ * takes r and c that represent the size of the world
+ * there's no default constructor since a world can't be empty (black hole?)
+ */
 World::World(int r, int c){
 	this->r = r; 
 	this->c = c;
@@ -186,15 +193,26 @@ World::World(int r, int c){
 	for(int i=0;i<r;++i)
 		darwin[i] = new Creature[c];
 }
+
+// ----------
+// destructor
+// ----------
+/* We set up the world as a 2D heap array so the size can be later specified in the constructor.
+ * therefore we need a destructor to free the array afterward.
+ */
 World::~World(){
 	for(int i=0;i<r;++i)
 		delete [] darwin[i];
 	delete [] darwin;
 }
 
-// implement hop/infect in interpret
-// implement all controls
-void World::interpret(int x, int y){
+// ---------
+// give_turn
+// ---------
+/* give the Creature on (x,y) a turn.
+ * receive a int fron my_turn() that indicate the direction of movement; if -1, don't move.
+ */
+void World::give_turn(int x, int y){
 	assert(x >= 0);
 	assert(y >= 0);
 	assert(x < r);
@@ -240,28 +258,45 @@ void World::interpret(int x, int y){
 
 }
 
-// add a creature onto the specified coordinate
+// -----------
+// addCreature
+// -----------
+/* add a creature onto the specified coordinate (x,y)
+ */
 void World::addCreature(Creature c, int x, int y){
 	darwin[x][y] = c;
 }
-// run the world for m rounds and print each grid
+
+// ---
+// run
+// ---
+/* run the world for m rounds.
+ * print the grid in its initial state and a grid after each round.
+ */
 void World::run(int m){
 	int t = 0;
-	while(t<m){
+	// initial state
+	print_grid(t, cout);
+	while(t<=m){
 		// give a turn for each creature on the maps
-		print_grid(t, cout);
 		for(int i=0;i<r;++i){
 			for(int j=0;j<c;++j){
 				if(darwin[i][j].getspecie()!='.'){
 					cout<<"we are at?"<<i<<","<<j<<endl;
-					interpret(i,j);
-					// print_grid(t, cout);
+					give_turn(i,j);
 				}
 			}
 		}
 		++t;
+		print_grid(t, cout);
 	}
 }
+
+// ----------
+// print_grid
+// ----------
+/* iterate through each space in the grid and print out it out as a 2D array. 
+ */
 void World::print_grid(int turn, ostream& out){
 	out<<"Turn = "<<turn<<endl;
 	for(int i=-1;i<r;++i){
