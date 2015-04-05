@@ -18,6 +18,7 @@ Creature& Creature::operator=(const Creature& rhs){
 	_sp = rhs._sp;
 	_direc = rhs._direc;
 	_pc = rhs._pc;
+	finish = rhs.finish;
 	return *this;
 }
 
@@ -37,30 +38,31 @@ void Creature::infect(Creature& c) const{
 	c._sp = _sp;
 }
 
-const char& Creature::getspecie() const{
+const char Creature::getspecie() const{
 	return _sp.getname();
 }
 
-bool Creature::isenemy(const Creature& target, bool wall){
-	return target._sp.getname() !='.' && !wall && !(_sp == target._sp);
+bool Creature::isenemy(const Creature* target, bool wall){
+	return target != NULL && (*target).getspecie() !='.' && !wall && !(_sp == (*target)._sp);
 }
 
-bool Creature::isempty(const Creature& target, bool wall){
-	return target._sp.getname() =='.' && !wall;
+bool Creature::isempty(const Creature* target, bool wall){
+	// cout<<"name: "<<(target.getspecie())<<"\nis this a wall: "<<wall<<endl;
+	return target != NULL && (*target).getspecie() =='.' && !wall;
 }
 
-int Creature::my_turn(const bool* iswall, Creature** neighbor){
+int Creature::my_turn(const bool* iswall, Creature* neighbor[]){
 	while(1){
 		int inst = _sp.getstep(_pc);
-		cout<<"inst"<<inst<<endl;
+		// cout<<"inst"<<inst<<endl;
 		if(inst%10>=5){// if instruction is a control
-			if(inst%10==5 && isempty(*neighbor[_direc], iswall[_direc]))
+			if(inst%10==5 && isempty(neighbor[_direc], iswall[_direc]))
 				go(inst/10);
 			else if(inst%10==6 && iswall[_direc])
 				go(inst/10);
 			else if(inst%10==7 && rand()%2==1)
 				go(inst/10);
-			else if(inst%10==8 && isenemy(*neighbor[_direc], iswall[_direc]))
+			else if(inst%10==8 && isenemy(neighbor[_direc], iswall[_direc]))
 				go(inst/10);
 			else if(inst%10==9)
 				go(inst/10);
@@ -69,8 +71,10 @@ int Creature::my_turn(const bool* iswall, Creature** neighbor){
 			continue;
 		}
 		else if(inst%10<=4){// if instruction is an action
-			if(inst%10==1 && isempty(*neighbor[_direc], iswall[_direc]))
+			if(inst%10==1 && isempty(neighbor[_direc], iswall[_direc])){
+				go(-1);
 				return _direc;
+			}
 			else if(inst%10==2){
 				turn_left();
 				go(-1);
@@ -81,7 +85,7 @@ int Creature::my_turn(const bool* iswall, Creature** neighbor){
 				go(-1);
 				return -1;
 			}
-			else if(inst%10==4 && isenemy(*neighbor[_direc], iswall[_direc])){
+			else if(inst%10==4 && isenemy(neighbor[_direc], iswall[_direc])){
 				infect(*neighbor[_direc]);
 				go(-1);
 				return -1;
@@ -167,7 +171,7 @@ const int& Species::getstep(int i) const{
 	return _steps[i];
 }
 
-const char& Species::getname() const{
+const char Species::getname() const{
 	return _name;
 }
 
@@ -227,14 +231,22 @@ void World::give_turn(int x, int y){
 	Creature& current = darwin[x][y];
 
 	Creature* neighbor[4];
-	if(iswall[0]) {neighbor[0] = &darwin[x-1][y];}
-	if(iswall[1]) {neighbor[1] = &darwin[x][y+1];}
-	if(iswall[2]) {neighbor[2] = &darwin[x+1][y];}
-	if(iswall[3]) {neighbor[3] = &darwin[x][y-1];}
+	
+	neighbor[0] = !iswall[0] ? &darwin[x-1][y] : NULL;
+	neighbor[1] = !iswall[1] ? &darwin[x][y+1] : NULL;
+	neighbor[2] = !iswall[2] ? &darwin[x+1][y] : NULL;
+	neighbor[3] = !iswall[3] ? &darwin[x][y-1] : NULL;
+
+	// A Creature act more than twice a turn because its new position is at "next-to-act"
+	// Proposal 1: create a 2D bool array that save the acted-or-not value; value moved with the Creature
+	// Proposal 2: put additinal bool variable in Creature class. Use vector to save all acted Creatures and reset theor acted value at the end.
+
 
 	int code = current.my_turn(iswall, neighbor);
 	// then use code to execute appropriate action
+	current.finish = true;
 	if(code >= 0){
+		// cout<<"code"<<code<<endl;
 		assert(code<=4);
 		if(code == 0){
 			assert(x-1 >= 0);
@@ -254,8 +266,7 @@ void World::give_turn(int x, int y){
 			current = Creature();
 		}
 	}
-
-
+	// current.finish = true;
 }
 
 // -----------
@@ -279,14 +290,18 @@ void World::run(int m){
 	print_grid(t, cout);
 	while(t<=m){
 		// give a turn for each creature on the maps
+		vector<Creature*> creatures; 
 		for(int i=0;i<r;++i){
 			for(int j=0;j<c;++j){
-				if(darwin[i][j].getspecie()!='.'){
-					cout<<"we are at?"<<i<<","<<j<<endl;
+				if(darwin[i][j].getspecie()!='.' && !darwin[i][j].finish){
+					// cout<<"we are at?"<<i<<","<<j<<endl;
+					creatures.push_back(&darwin[i][j]);
 					give_turn(i,j);
 				}
 			}
 		}
+		for(Creature* temp: creatures)
+			(*temp).finish = false;
 		++t;
 		print_grid(t, cout);
 	}

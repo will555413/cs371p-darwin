@@ -26,7 +26,7 @@ public:
 	bool operator==(const Species& s);
 	void addstep(string line);
 	const int& getstep(int i) const;
-	const char& getname() const;
+	const char getname() const;
 	int getprogsize() const;
 };
 
@@ -51,11 +51,12 @@ public:
 	void turn_left();
 	void turn_right();
 	void infect(Creature& c) const;
-	const char& getspecie() const;
-	bool isenemy(const Creature& target, bool wall);
-	bool isempty(const Creature& target, bool wall);
-	int my_turn(const bool* iswall, Creature** neighbor);
+	const char getspecie() const;
+	bool isenemy(const Creature* target, bool wall);
+	bool isempty(const Creature* target, bool wall);
+	int my_turn(const bool* iswall, Creature* neighbor[]);
 	void go(int i);
+	bool finish = false;
 };
 
 class World{
