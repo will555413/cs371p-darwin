@@ -288,20 +288,22 @@ void World::run(int m){
 	int t = 0;
 	// initial state
 	print_grid(t, cout);
-	while(t<=m){
+	while(t<m){
 		// give a turn for each creature on the maps
-		vector<Creature*> creatures; 
 		for(int i=0;i<r;++i){
 			for(int j=0;j<c;++j){
-				if(darwin[i][j].getspecie()!='.' && !darwin[i][j].finish){
-					// cout<<"we are at?"<<i<<","<<j<<endl;
-					creatures.push_back(&darwin[i][j]);
+				if(darwin[i][j].getspecie()!='.' && !darwin[i][j].finish)
 					give_turn(i,j);
+			}
+		}
+
+		for(int i=0;i<r;++i){
+			for(int j=0;j<c;++j){
+				if (darwin[i][j].getspecie()!='.') {
+					darwin[i][j].finish = false;
 				}
 			}
 		}
-		for(Creature* temp: creatures)
-			(*temp).finish = false;
 		++t;
 		print_grid(t, cout);
 	}
