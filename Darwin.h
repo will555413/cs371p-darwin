@@ -19,8 +19,7 @@ private:
 	vector<int> _steps;
 public:
 	Species();
-	Species(char name, const vector<int>& steps = vector<int>());
-	Species(const Species& rhs);
+	Species(char name);
 
 	Species& operator=(const Species& s);
 	bool operator==(const Species& s);
@@ -32,6 +31,10 @@ public:
 
 class Creature{
 private:
+	/* Contains the species of a creature
+	 */
+	Species _sp;
+public:
 	/* save the direction of a creature
 	 * 0 = North, 1 = East, 2 = South, 3 = West.
 	 * reset if value < 0 or value > 3
@@ -41,10 +44,7 @@ private:
 	 * reset to 0 if value > number of steps available in the specie
 	 */
 	int _pc = 0;
-	/* Contains the species of a creature
-	 */
-	Species _sp;
-public:
+
 	Creature(int direc = 0, const Species& sp = Species());
 	Creature(const Creature& c);
 	Creature& operator=(const Creature& rhs);
@@ -72,6 +72,6 @@ public:
 	~World();
 	void give_turn(int x, int y);
 	void addCreature(Creature c, int x, int y);
-	void run(int m);
+	void run(int m, ostream& out);
 	void print_grid(int turn, ostream& out);
 };

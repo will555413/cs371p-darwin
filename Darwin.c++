@@ -6,13 +6,13 @@ using namespace std;
 // Creature class methods
 // ----------------------
 Creature::Creature(const Creature& c):
+	_sp(c._sp),
 	_direc(c._direc),
-	_pc(c._pc),
-	_sp(c._sp){}
+	_pc(c._pc){}
 
 Creature::Creature(int direc, const Species& sp):
-	_direc(direc),
-	_sp(sp){}
+	_sp(sp),
+	_direc(direc){}
 
 Creature& Creature::operator=(const Creature& rhs){
 	_sp = rhs._sp;
@@ -22,12 +22,12 @@ Creature& Creature::operator=(const Creature& rhs){
 	return *this;
 }
 
-void Creature::turn_left(){
+void Creature::turn_right(){
 	++_direc;
 	if(_direc > 3)
 		_direc = 0;
 }
-void Creature::turn_right(){
+void Creature::turn_left(){
 	--_direc;
 	if(_direc < 0)
 		_direc = 3;
@@ -115,12 +115,8 @@ void Creature::go(int i){
 
 Species::Species():
 	_name('.'){}
-Species::Species(char name, const vector<int>& steps):
-	_name(name), 
-	_steps(steps){}
-Species::Species(const Species& rhs):
-	_name(rhs._name),
-	_steps(rhs._steps){}
+Species::Species(char name):
+	_name(name){}
 
 Species& Species::operator=(const Species& s){
 	_name = s._name;
@@ -129,6 +125,11 @@ Species& Species::operator=(const Species& s){
 }
 
 bool Species::operator==(const Species& s){
+	if(getprogsize()!=s.getprogsize())
+		return false;
+	for(int i=0;i<getprogsize();++i)
+		if(getstep(i)!=s.getstep(i))
+			return false;
 	return _name == s._name;
 }
 
@@ -284,10 +285,10 @@ void World::addCreature(Creature c, int x, int y){
 /* run the world for m rounds.
  * print the grid in its initial state and a grid after each round.
  */
-void World::run(int m){
+void World::run(int m, ostream& out){
 	int t = 0;
 	// initial state
-	print_grid(t, cout);
+	print_grid(t, out);
 	while(t<m){
 		// give a turn for each creature on the maps
 		for(int i=0;i<r;++i){
@@ -305,7 +306,7 @@ void World::run(int m){
 			}
 		}
 		++t;
-		print_grid(t, cout);
+		print_grid(t, out);
 	}
 }
 

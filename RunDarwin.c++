@@ -125,7 +125,7 @@ int main () {
     d1.addCreature(Creature(2,hopper),4,4);
     d1.addCreature(Creature(3,hopper),4,3);
     d1.addCreature(Creature(0,food),7,7);
-    d1.run(5);
+    d1.run(5, cout);
 
 
     // ----------
@@ -148,7 +148,7 @@ int main () {
     d2.addCreature(Creature(1,hopper),3,2);
     d2.addCreature(Creature(0,rover),5,4);
     d2.addCreature(Creature(3,trap),6,8);
-    d2.run(5);
+    d2.run(5, cout);
 
     // ------------
     // darwin 72x72
