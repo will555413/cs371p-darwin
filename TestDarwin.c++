@@ -65,6 +65,7 @@ TEST(Darwin, Creature_Equal_1) {
     Creature c2;
     ASSERT_TRUE(c1.getspecie()!=c2.getspecie());
     ASSERT_TRUE(c1._direc!=c2._direc);
+
     c2 = c1;
     ASSERT_TRUE(c1.getspecie()==c2.getspecie());
     ASSERT_TRUE(c1._direc==c2._direc);
@@ -77,6 +78,19 @@ TEST(Darwin, Creature_Equal_2) {
     Creature c2(2, food);
     ASSERT_TRUE(c1.getspecie()!=c2.getspecie());
     ASSERT_TRUE(c1._direc!=c2._direc);
+
+    c2 = c1;
+    ASSERT_TRUE(c1.getspecie()==c2.getspecie());
+    ASSERT_TRUE(c1._direc==c2._direc);
+}
+
+TEST(Darwin, Creature_Equal_3) {
+    Species food('f');
+    Creature c1(1, food);
+    Creature c2(2, food);
+    ASSERT_TRUE(c1.getspecie()==c2.getspecie());
+    ASSERT_TRUE(c1._direc!=c2._direc);
+
     c2 = c1;
     ASSERT_TRUE(c1.getspecie()==c2.getspecie());
     ASSERT_TRUE(c1._direc==c2._direc);
@@ -121,7 +135,6 @@ TEST(Darwin, Creature_Turn_Right_3) {
 TEST(Darwin, Creature_Infect_1) {
     Species food('f');
     Species rover('r');
-
     Creature c1(0, food);
     Creature c2(0, rover);
 
@@ -132,7 +145,6 @@ TEST(Darwin, Creature_Infect_1) {
 TEST(Darwin, Creature_Infect_2) {
     Species hopper('h');
     Species rover('r');
-
     Creature c1(0, hopper);
     Creature c2(0, rover);
 
@@ -143,7 +155,6 @@ TEST(Darwin, Creature_Infect_2) {
 TEST(Darwin, Creature_Infect_3) {
     Species food('f');
     Species hopper('h');
-
     Creature c1(0, food);
     Creature c2(0, hopper);
 
@@ -154,26 +165,21 @@ TEST(Darwin, Creature_Infect_3) {
 TEST(Darwin, Creature_Isenemy_1) {
     Species food('f');
     Species rover('r');
-
     Creature c1(0, food);
     Creature c2(0, rover);
-
     ASSERT_TRUE(c2.isenemy(&c1, false));
 }
 
 TEST(Darwin, Creature_Isenemy_2) {
     Species rover('r');
-
     Creature c1;
     Creature c2(0, rover);
-
     ASSERT_FALSE(c2.isenemy(&c1, false));
 }
 
 TEST(Darwin, Creature_Isenemy_3) {
     Species rover('r');
     Creature c2(0, rover);
-
     ASSERT_FALSE(c2.isenemy(NULL, true));
 }
 
@@ -185,7 +191,6 @@ TEST(Darwin, Creature_Isempty_1) {
 TEST(Darwin, Creature_Isempty_2) {
     Species rover('r');
     Creature c2(0, rover);
-
     ASSERT_FALSE(c2.isempty(&c2, false));
 }
 
@@ -200,6 +205,7 @@ TEST(Darwin, Creature_go_1) {
     food.addstep("left");
     food.addstep("go 0");
     Creature c2(0, food);
+
     c2.go(-1);
     ASSERT_EQ(c2._pc, 1);
 }
@@ -209,8 +215,10 @@ TEST(Darwin, Creature_go_2) {
     food.addstep("left");
     food.addstep("go 0");
     Creature c2(0, food);
+
     c2.go(-1);
     ASSERT_EQ(c2._pc, 1);
+
     c2.go(-1);
     ASSERT_EQ(c2._pc, 0);
 }
@@ -222,6 +230,7 @@ TEST(Darwin, Creature_go_3) {
     food.addstep("right");
     food.addstep("go 0");
     Creature c2(0, food);
+
     c2.go(3);
     ASSERT_EQ(c2._pc, 3);
 }
@@ -247,6 +256,17 @@ TEST(Darwin, Creature_my_turn_2) {
     ASSERT_EQ(c2.my_turn(barr, carr), 0);
 }
 
+TEST(Darwin, Creature_my_turn_3) {
+    Species food('f');
+    food.addstep("right");
+    food.addstep("go 0");
+    Creature c2(0, food);
+    Creature empty;
+    bool barr[4] = {false,false,false,false};
+    Creature* carr[4] = {&empty,&empty,&empty,&empty};
+    ASSERT_EQ(c2.my_turn(barr, carr), -1);
+}
+
 TEST(Darwin, Species_constructor_1) {
     Species empty;
     ASSERT_EQ(empty.getname(), '.');
@@ -255,6 +275,12 @@ TEST(Darwin, Species_constructor_1) {
 TEST(Darwin, Species_constructor_2) {
     Species food('f');
     ASSERT_EQ(food.getname(), 'f');
+}
+
+TEST(Darwin, Species_constructor_3) {
+    Species hopper('h');
+    ASSERT_EQ(hopper.getname(), 'h');
+    ASSERT_EQ(hopper.getprogsize(), 0);
 }
 
 TEST(Darwin, Species_copy_1) {
@@ -285,6 +311,7 @@ TEST(Darwin, Species_copy_3) {
     Species hopper('h');
     hopper.addstep("hop");
     hopper.addstep("go 0");
+
     ASSERT_FALSE(food.getname()==hopper.getname());
     ASSERT_FALSE(food.getstep(0)==hopper.getstep(0));
 
@@ -297,6 +324,7 @@ TEST(Darwin, Species_equal_1) {
     Species food('f');
     food.addstep("left");
     food.addstep("go 0");
+
     Species hopper('h');
     hopper.addstep("hop");
     hopper.addstep("go 0");
@@ -314,6 +342,7 @@ TEST(Darwin, Species_equal_3) {
     Species food('f');
     food.addstep("left");
     food.addstep("go 0");
+
     Species fakefood('f');
     food.addstep("right");
     food.addstep("go 0");
@@ -324,6 +353,7 @@ TEST(Darwin, Species_equal_4) {
     Species food('f');
     food.addstep("left");
     food.addstep("go 0");
+
     Species food2('F');
     food.addstep("left");
     food.addstep("go 0");
@@ -335,6 +365,21 @@ TEST(Darwin, Species_addstep_1) {
     food.addstep("left");
     food.addstep("go 0");
     ASSERT_EQ(food.getstep(0), 2);
+    ASSERT_EQ(food.getprogsize(), 2);
+}
+
+TEST(Darwin, Species_addstep_2) {
+    Species floor('.');
+    ASSERT_EQ(floor.getprogsize(), 0);
+}
+
+TEST(Darwin, Species_addstep_3) {
+    Species hopper('h');
+    hopper.addstep("right");
+    hopper.addstep("go 0");
+    hopper.addstep("hop");
+    ASSERT_EQ(hopper.getstep(2), 1);
+    ASSERT_EQ(hopper.getprogsize(), 3);
 }
 
 TEST(Darwin, Species_getprogsize_1) {
@@ -349,6 +394,7 @@ TEST(Darwin, Species_getprogsize_2) {
     food.addstep("left");
     food.addstep("go 0");
     ASSERT_EQ(food.getprogsize(), 2);
+
     Species fakefood('F');
     food = fakefood;
     ASSERT_EQ(food.getprogsize(), 0);
@@ -357,6 +403,49 @@ TEST(Darwin, Species_getprogsize_2) {
 TEST(Darwin, Species_getprogsize_3) {
     Species food('f');
     ASSERT_EQ(food.getprogsize(), 0);
+}
+
+TEST(Darwin, Species_getstep_1) {
+    Species food('f');
+    food.addstep("left");
+    food.addstep("infect");
+    ASSERT_EQ(food.getstep(1), 4);
+}
+
+TEST(Darwin, Species_getstep_2) {
+    Species food('f');
+    food.addstep("left");
+    food.addstep("go 0");
+    ASSERT_EQ(food.getstep(0), 2);
+
+    Species fakefood('F');
+    food = fakefood;
+    ASSERT_EQ(food.getstep(1), 9);
+}
+
+TEST(Darwin, Species_getstep_3) {
+    Species hopper('h');
+    hopper.addstep("hop");
+    ASSERT_EQ(hopper.getstep(0), 1);
+}
+
+TEST(Darwin, Species_getname_1) {
+    Species floor;
+    ASSERT_EQ(floor.getname(), '.');
+}
+
+TEST(Darwin, Species_getname_2) {
+    Species food('f');
+    ASSERT_EQ(food.getname(), 'f');
+
+    Species fakefood('F');
+    food = fakefood;
+    ASSERT_EQ(food.getname(), 'F');
+}
+
+TEST(Darwin, Species_getname_3) {
+    Species hopper('h');
+    ASSERT_EQ(hopper.getname(), 'h');
 }
 
 TEST(Darwin, World_constructor_1) {
@@ -388,6 +477,7 @@ TEST(Darwin, World_addCreature_1) {
     Species food('f');
     darwin.addCreature(Creature(0,food),0,0);
     darwin.addCreature(Creature(0,food),1,1);
+
     stringstream output;
     darwin.print_grid(-1,output);
     string expected = "Turn = -1\n  01\n0 f.\n1 .f\n";
@@ -400,6 +490,7 @@ TEST(Darwin, World_addCreature_2) {
     Species hopper('h');
     darwin.addCreature(Creature(0,food),0,0);
     darwin.addCreature(Creature(0,hopper),1,1);
+
     stringstream output;
     darwin.print_grid(-1,output);
     string expected = "Turn = -1\n  01\n0 f.\n1 .h\n";
@@ -414,6 +505,7 @@ TEST(Darwin, World_addCreature_3) {
     darwin.addCreature(Creature(0,food),0,1);
     darwin.addCreature(Creature(0,hopper),1,0);
     darwin.addCreature(Creature(0,hopper),1,1);
+
     stringstream output;
     darwin.print_grid(-1,output);
     string expected = "Turn = -1\n  01\n0 ff\n1 hh\n";
@@ -427,9 +519,11 @@ TEST(Darwin, World_give_turn_1) {
     hopper.addstep("go 0");
     darwin.addCreature(Creature(0,hopper),1,0);
     darwin.addCreature(Creature(0,hopper),1,1);
+
     stringstream output;
     darwin.print_grid(-1,output);
     ASSERT_EQ(output.str(), "Turn = -1\n  01\n0 ..\n1 hh\n");
+
     darwin.give_turn(1,0);
     output.str("");
     darwin.print_grid(-1,output);
@@ -446,9 +540,11 @@ TEST(Darwin, World_give_turn_2) {
     food.addstep("go 0");
     darwin.addCreature(Creature(0,virus),1,0);
     darwin.addCreature(Creature(0,food),0,0);
+
     stringstream output;
     darwin.print_grid(-1,output);
     ASSERT_EQ(output.str(), "Turn = -1\n  01\n0 f.\n1 v.\n");
+
     darwin.give_turn(1,0);
     output.str("");
     darwin.print_grid(-1,output);
@@ -464,17 +560,21 @@ TEST(Darwin, World_give_turn_3) {
     rover.addstep("hop");
     rover.addstep("go 0");
     darwin.addCreature(Creature(1,rover),0,0);
+
     stringstream output;
     darwin.print_grid(0,output);
     ASSERT_EQ(output.str(), "Turn = 0\n  01\n0 r.\n1 ..\n");
+
     darwin.give_turn(0,0);
     output.str("");
     darwin.print_grid(1,output);
     ASSERT_EQ(output.str(), "Turn = 1\n  01\n0 .r\n1 ..\n");
+
     darwin.give_turn(0,1);
     output.str("");
     darwin.print_grid(2,output);
     ASSERT_EQ(output.str(), "Turn = 2\n  01\n0 .r\n1 ..\n");
+
     darwin.give_turn(0,1);
     output.str("");
     darwin.print_grid(3,output);
@@ -486,11 +586,13 @@ TEST(Darwin, World_run_1) {
     Species virus('v');
     virus.addstep("infect");
     virus.addstep("go 0");
+
     Species food('f');
     food.addstep("left");
     food.addstep("go 0");
     darwin.addCreature(Creature(0,virus),1,0);
     darwin.addCreature(Creature(0,food),0,0);
+
     stringstream output;
     darwin.run(1,output);
     ASSERT_EQ(output.str(), "Turn = 0\n  01\n0 f.\n1 v.\nTurn = 1\n  01\n0 v.\n1 v.\n");
@@ -507,11 +609,13 @@ TEST(Darwin, World_run_2) {
     rover.addstep("go 0");
     rover.addstep("infect");
     rover.addstep("go 0");
+
     Species food('f');
     food.addstep("left");
     food.addstep("go 0");
     darwin.addCreature(Creature(0,rover),1,1);
     darwin.addCreature(Creature(0,food),0,0);
+
     stringstream output;
     darwin.run(3,output);
     ASSERT_EQ(output.str(), "Turn = 0\n  01\n0 f.\n1 .r\nTurn = 1\n  01\n0 fr\n1 ..\nTurn = 2\n  01\n0 fr\n1 ..\nTurn = 3\n  01\n0 rr\n1 ..\n");
@@ -526,7 +630,37 @@ TEST(Darwin, World_run_3) {
     rover.addstep("hop");
     rover.addstep("go 0");
     darwin.addCreature(Creature(0,rover),1,1);
+
     stringstream output;
     darwin.run(3,output);
     ASSERT_EQ(output.str(), "Turn = 0\n  01\n0 ..\n1 .r\nTurn = 1\n  01\n0 .r\n1 ..\nTurn = 2\n  01\n0 .r\n1 ..\nTurn = 3\n  01\n0 r.\n1 ..\n");
+}
+
+TEST(Darwin, World_print_1) {
+    World darwin(3,3);
+    stringstream output;
+    darwin.print_grid(0,output);
+    ASSERT_EQ(output.str(), "Turn = 0\n  012\n0 ...\n1 ...\n2 ...\n");
+}
+
+TEST(Darwin, World_print_2) {
+    World darwin(2,2);
+    Species rover('r');
+    darwin.addCreature(Creature(0,rover),1,1);
+
+    stringstream output;
+    darwin.print_grid(1,output);
+    ASSERT_EQ(output.str(), "Turn = 1\n  01\n0 ..\n1 .r\n");
+}
+
+TEST(Darwin, World_print_3) {
+    World darwin(2,2);
+    Species virus('v');
+    Species food('f');
+    darwin.addCreature(Creature(0,virus),1,0);
+    darwin.addCreature(Creature(0,food),0,0);
+
+    stringstream output;
+    darwin.print_grid(0,output);
+    ASSERT_EQ(output.str(), "Turn = 0\n  01\n0 f.\n1 v.\n");
 }
