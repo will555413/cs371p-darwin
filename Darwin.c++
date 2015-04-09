@@ -224,19 +224,19 @@ void World::give_turn(int x, int y){
 	assert(y < c);
 
 	bool iswall[4] = {false};
-	if(x-1 < 0) {iswall[0]=true;}
-	if(y+1 >= c) {iswall[1]=true;}
-	if(x+1 >= r) {iswall[2]=true;}
-	if(y-1 < 0) {iswall[3]=true;}
+	if(x-1 < 0) {iswall[1]=true;}
+	if(y+1 >= c) {iswall[2]=true;}
+	if(x+1 >= r) {iswall[3]=true;}
+	if(y-1 < 0) {iswall[0]=true;}
 
 	Creature& current = darwin[x][y];
 
 	Creature* neighbor[4];
 	
-	neighbor[0] = !iswall[0] ? &darwin[x-1][y] : NULL;
-	neighbor[1] = !iswall[1] ? &darwin[x][y+1] : NULL;
-	neighbor[2] = !iswall[2] ? &darwin[x+1][y] : NULL;
-	neighbor[3] = !iswall[3] ? &darwin[x][y-1] : NULL;
+	neighbor[1] = !iswall[1] ? &darwin[x-1][y] : NULL;
+	neighbor[2] = !iswall[2] ? &darwin[x][y+1] : NULL;
+	neighbor[3] = !iswall[3] ? &darwin[x+1][y] : NULL;
+	neighbor[0] = !iswall[0] ? &darwin[x][y-1] : NULL;
 
 	// A Creature act more than twice a turn because its new position is at "next-to-act"
 	// Proposal 1: create a 2D bool array that save the acted-or-not value; value moved with the Creature
@@ -249,19 +249,19 @@ void World::give_turn(int x, int y){
 	if(code >= 0){
 		// cout<<"code"<<code<<endl;
 		assert(code<=4);
-		if(code == 0){
+		if(code == 1){
 			assert(x-1 >= 0);
 			darwin[x-1][y] = current;
 			current = Creature();
-		} else if(code == 1){
+		} else if(code == 2){
 			assert(y+1 < c);
 			darwin[x][y+1] = current;
 			current = Creature();
-		} else if(code == 2){
+		} else if(code == 3){
 			assert(x+1 < r);
 			darwin[x+1][y] = current;
 			current = Creature();
-		} else if(code == 3){
+		} else if(code == 0){
 			assert(y-1 >= 0);
 			darwin[x][y-1] = current;
 			current = Creature();
@@ -306,7 +306,8 @@ void World::run(int m, ostream& out){
 			}
 		}
 		++t;
-		print_grid(t, out);
+		if(t<=10 || t%100==0)
+			print_grid(t, out);
 	}
 }
 
@@ -316,7 +317,7 @@ void World::run(int m, ostream& out){
 /* iterate through each space in the grid and print out it out as a 2D array. 
  */
 void World::print_grid(int turn, ostream& out){
-	out<<"Turn = "<<turn<<endl;
+	out<<"Turn = "<<turn<<"."<<endl;
 	for(int i=-1;i<r;++i){
 		if(i==-1)
 			out<<"  ";
@@ -333,4 +334,5 @@ void World::print_grid(int turn, ostream& out){
 		}
 		out<<endl;
 	}
+	out<<endl;
 }

@@ -119,12 +119,12 @@ int main () {
     Print every grid.
     */
     World d1(8,8);
-    d1.addCreature(Creature(1,food),0,0);
-    d1.addCreature(Creature(0,hopper),3,3);
-    d1.addCreature(Creature(1,hopper),3,4);
-    d1.addCreature(Creature(2,hopper),4,4);
-    d1.addCreature(Creature(3,hopper),4,3);
-    d1.addCreature(Creature(0,food),7,7);
+    d1.addCreature(Creature(2,food),0,0);
+    d1.addCreature(Creature(1,hopper),3,3);
+    d1.addCreature(Creature(2,hopper),3,4);
+    d1.addCreature(Creature(3,hopper),4,4);
+    d1.addCreature(Creature(0,hopper),4,3);
+    d1.addCreature(Creature(1,food),7,7);
     d1.run(5, cout);
 
 
@@ -144,10 +144,10 @@ int main () {
     Print every grid.
     */
     World d2(7,9);
-    d2.addCreature(Creature(2,trap),0,0);
-    d2.addCreature(Creature(1,hopper),3,2);
-    d2.addCreature(Creature(0,rover),5,4);
-    d2.addCreature(Creature(3,trap),6,8);
+    d2.addCreature(Creature(3,trap),0,0);
+    d2.addCreature(Creature(2,hopper),3,2);
+    d2.addCreature(Creature(1,rover),5,4);
+    d2.addCreature(Creature(0,trap),6,8);
     d2.run(5, cout);
 
     // ------------
@@ -172,6 +172,32 @@ int main () {
     Print the first 10 grids          (i.e. 0, 1, 2...9).
     Print every 100th grid after that (i.e. 100, 200, 300...1000).
     */
+    World d3(72,72);
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d3.addCreature(Creature(rand()%4,food),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d3.addCreature(Creature(rand()%4,hopper),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d3.addCreature(Creature(rand()%4,rover),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d3.addCreature(Creature(rand()%4,trap),row,col);
+    }
+    d3.run(1000, cout);
 
     // ------------
     // darwin 72x72
