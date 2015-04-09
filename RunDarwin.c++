@@ -29,9 +29,7 @@ int main () {
      0: left
      1: go 0
     */
-    
     Species food('f');
-    // vector<string> prog = {"left", "go 0"};
     food.addstep("left");
     food.addstep("go 0");
 
@@ -43,8 +41,6 @@ int main () {
      0: hop
      1: go 0
     */
-
-    // prog = {"hop", "go 0"};
     Species hopper('h');
     hopper.addstep("hop");
     hopper.addstep("go 0");
@@ -66,9 +62,6 @@ int main () {
      9: infect
     10: go 0
     */
-
-    // prog = {"if_enemy 9", "if_empty 7", "if_random 5", "left", "go 0"
-            // "right","go 0","hop","go 0","infect", "go 0"};
     Species rover('r');
     rover.addstep("if_enemy 9");
     rover.addstep("if_empty 7");
@@ -93,8 +86,6 @@ int main () {
      3: infect
      4: go 0
     */
-
-    // prog = {"if_enemy 3", "left", "go 0", "infect", "go 0"};
     Species trap('t');
     trap.addstep("if_enemy 3");
     trap.addstep("left");
@@ -212,6 +203,7 @@ int main () {
     in a row-major order grid.
     Call rand() again, mod it with 4 and use that for it's direction with
     the ordering: 0:west, 1:north, 2:east, 3:south.
+
     Do that for each kind of creature.
     10 Food
     10 Hopper
@@ -223,5 +215,50 @@ int main () {
     Print the first 10 grids          (i.e. 0, 1, 2...9).
     Print every 100th grid after that (i.e. 100, 200, 300...1000).
     */
+    Species best('b');
+    best.addstep("if_empty 7");
+    best.addstep("if_enemy 9");
+    best.addstep("if_enemy 5");
+    best.addstep("right");
+    best.addstep("go 0");
+    best.addstep("left");
+    best.addstep("go 0");
+    best.addstep("hop");
+    best.addstep("go 0");
+    best.addstep("infect");
+    best.addstep("go 0");
+
+    World d4(72,72);
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d4.addCreature(Creature(rand()%4,food),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d4.addCreature(Creature(rand()%4,hopper),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d4.addCreature(Creature(rand()%4,rover),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d4.addCreature(Creature(rand()%4,trap),row,col);
+    }
+    for(int count = 10; count>0;--count){
+        int base = rand() % 5184;
+        int row = base / 72;
+        int col = base % 72;
+        d4.addCreature(Creature(rand()%4,best),row,col);
+    }
+    d4.run(1000, cout);
 
     return 0;}
