@@ -1,0 +1,107 @@
+commit c7a78a65b4c38606334f31598660b94565b0293c
+Author: William <will555413>
+Date:   Thu Apr 9 18:06:13 2015 -0500
+
+    finalized with best
+
+commit c6f674f5929c0507d1bdc30f0c1a143dac5961bb
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Thu Apr 9 18:01:31 2015 -0500
+
+    Delete output
+
+commit 127eca350b06309a6c936db85cfaf58fd57fd270
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Thu Apr 9 18:01:19 2015 -0500
+
+    Delete compile
+
+commit a540620ab82a6a62c9d8906359b5675ab882ae55
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Thu Apr 9 18:01:06 2015 -0500
+
+    Delete RunDarwin
+
+commit e11028ce179df259d1dcbfcba2ead6c62961520c
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Thu Apr 9 17:59:21 2015 -0500
+
+    Delete TestDarwin
+
+commit 572f9d782fb08b449b579854295f4e10895b554d
+Author: Xingrong <phoebewu@utexas.edu>
+Date:   Thu Apr 9 17:58:20 2015 -0500
+
+    test finished
+
+commit d38af01905c54a62806a2bb6218d891b59713f0a
+Author: Xingrong <phoebewu@utexas.edu>
+Date:   Thu Apr 9 17:42:32 2015 -0500
+
+    test updated
+
+commit 909008039c3e6b50f43b0e493a0c9ce1a10a5cae
+Author: William <will555413>
+Date:   Thu Apr 9 17:28:08 2015 -0500
+
+    direction value fixed
+
+commit 1caefedd07e6bfc16afc20015ed02702557844f5
+Author: Xingrong <phoebewu@utexas.edu>
+Date:   Thu Apr 9 16:54:13 2015 -0500
+
+    tests added
+
+commit 25a9ce22cb3a1413f1ef22af6a8005968089bcbd
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Wed Apr 8 16:40:41 2015 -0500
+
+    Problems solved!!!
+
+commit 69b82a91b05ae2fc904b00a6b151a3e90674d3c9
+Author: phoebe0607 <phoebewu@utexas.edu>
+Date:   Wed Apr 8 16:39:43 2015 -0500
+
+    Problems solved!!!
+
+commit 3061162a0b8bcb7077437ef0da6a1581785dd151
+Author: William <will555413>
+Date:   Sat Apr 4 22:13:23 2015 -0500
+
+    world functioning; stuck on multi-turn for a creature that moved
+
+commit 74a34ed20a57887f8db663848dda1bc84c52f83f
+Author: William <will555413>
+Date:   Fri Apr 3 22:52:30 2015 -0500
+
+    comments for World methods added
+
+commit d3a8a65a1011965bac836f17a556b2bd028e054f
+Author: William <will555413>
+Date:   Fri Apr 3 22:17:43 2015 -0500
+
+    huge implement change: send info of neighboring Creatures to current Creature and decoded action code in Creature class. However, hop didn't work
+
+commit 9578e3e0b5a5cc1d20b27bcf2e10efe99e7ebff0
+Author: William <will555413>
+Date:   Thu Apr 2 18:23:28 2015 -0500
+
+    Prototype WORKKKKSSSSSSgit add --allgit add --all
+
+commit 241d502638091e117ef5ecd025385d88f54dd037
+Author: William <will555413>
+Date:   Thu Apr 2 17:50:38 2015 -0500
+
+    ultimate prototype (codes are typed; one error left; but not tested)
+
+commit da43ea733c0fa2cbe813648ffb659ea6b93ab1b9
+Author: William <will555413>
+Date:   Thu Apr 2 13:26:25 2015 -0500
+
+    placeholders for each needed c++ file
+
+commit 47f10d543935ba8b50a19e873c2c61799481387b
+Author: William <will555413>
+Date:   Thu Apr 2 12:16:43 2015 -0500
+
+    initial commit

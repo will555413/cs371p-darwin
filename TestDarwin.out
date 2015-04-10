@@ -1,162 +1,162 @@
-==27483== Memcheck, a memory error detector
-==27483== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==27483== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
-==27483== Command: ./TestDarwin
-==27483== 
+==28950== Memcheck, a memory error detector
+==28950== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==28950== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==28950== Command: ./TestDarwin
+==28950== 
 Running main() from gtest_main.cc
 [==========] Running 68 tests from 1 test case.
 [----------] Global test environment set-up.
 [----------] 68 tests from Darwin
 [ RUN      ] Darwin.Creature_Constructor_1
-[       OK ] Darwin.Creature_Constructor_1 (29 ms)
+[       OK ] Darwin.Creature_Constructor_1 (41 ms)
 [ RUN      ] Darwin.Creature_Constructor_2
-[       OK ] Darwin.Creature_Constructor_2 (3 ms)
+[       OK ] Darwin.Creature_Constructor_2 (5 ms)
 [ RUN      ] Darwin.Creature_Constructor_3
-[       OK ] Darwin.Creature_Constructor_3 (4 ms)
+[       OK ] Darwin.Creature_Constructor_3 (5 ms)
 [ RUN      ] Darwin.Creature_Constructor_4
-[       OK ] Darwin.Creature_Constructor_4 (4 ms)
+[       OK ] Darwin.Creature_Constructor_4 (6 ms)
 [ RUN      ] Darwin.Creature_Constructor_5
-[       OK ] Darwin.Creature_Constructor_5 (4 ms)
+[       OK ] Darwin.Creature_Constructor_5 (6 ms)
 [ RUN      ] Darwin.Creature_Constructor_6
-[       OK ] Darwin.Creature_Constructor_6 (5 ms)
+[       OK ] Darwin.Creature_Constructor_6 (6 ms)
 [ RUN      ] Darwin.Creature_getspecie
-[       OK ] Darwin.Creature_getspecie (3 ms)
+[       OK ] Darwin.Creature_getspecie (4 ms)
 [ RUN      ] Darwin.Creature_Equal_1
-[       OK ] Darwin.Creature_Equal_1 (14 ms)
+[       OK ] Darwin.Creature_Equal_1 (18 ms)
 [ RUN      ] Darwin.Creature_Equal_2
-[       OK ] Darwin.Creature_Equal_2 (7 ms)
+[       OK ] Darwin.Creature_Equal_2 (9 ms)
 [ RUN      ] Darwin.Creature_Equal_3
-[       OK ] Darwin.Creature_Equal_3 (6 ms)
+[       OK ] Darwin.Creature_Equal_3 (9 ms)
 [ RUN      ] Darwin.Creature_Turn_Left_1
-[       OK ] Darwin.Creature_Turn_Left_1 (3 ms)
+[       OK ] Darwin.Creature_Turn_Left_1 (5 ms)
 [ RUN      ] Darwin.Creature_Turn_Left_2
-[       OK ] Darwin.Creature_Turn_Left_2 (3 ms)
+[       OK ] Darwin.Creature_Turn_Left_2 (4 ms)
 [ RUN      ] Darwin.Creature_Turn_Left_3
-[       OK ] Darwin.Creature_Turn_Left_3 (3 ms)
+[       OK ] Darwin.Creature_Turn_Left_3 (4 ms)
 [ RUN      ] Darwin.Creature_Turn_Right_1
-[       OK ] Darwin.Creature_Turn_Right_1 (3 ms)
+[       OK ] Darwin.Creature_Turn_Right_1 (4 ms)
 [ RUN      ] Darwin.Creature_Turn_Right_2
-[       OK ] Darwin.Creature_Turn_Right_2 (3 ms)
+[       OK ] Darwin.Creature_Turn_Right_2 (4 ms)
 [ RUN      ] Darwin.Creature_Turn_Right_3
-[       OK ] Darwin.Creature_Turn_Right_3 (3 ms)
+[       OK ] Darwin.Creature_Turn_Right_3 (5 ms)
 [ RUN      ] Darwin.Creature_Infect_1
-[       OK ] Darwin.Creature_Infect_1 (4 ms)
+[       OK ] Darwin.Creature_Infect_1 (6 ms)
 [ RUN      ] Darwin.Creature_Infect_2
-[       OK ] Darwin.Creature_Infect_2 (4 ms)
+[       OK ] Darwin.Creature_Infect_2 (6 ms)
 [ RUN      ] Darwin.Creature_Infect_3
-[       OK ] Darwin.Creature_Infect_3 (4 ms)
+[       OK ] Darwin.Creature_Infect_3 (6 ms)
 [ RUN      ] Darwin.Creature_Isenemy_1
-[       OK ] Darwin.Creature_Isenemy_1 (6 ms)
+[       OK ] Darwin.Creature_Isenemy_1 (8 ms)
 [ RUN      ] Darwin.Creature_Isenemy_2
-[       OK ] Darwin.Creature_Isenemy_2 (4 ms)
+[       OK ] Darwin.Creature_Isenemy_2 (6 ms)
 [ RUN      ] Darwin.Creature_Isenemy_3
-[       OK ] Darwin.Creature_Isenemy_3 (3 ms)
+[       OK ] Darwin.Creature_Isenemy_3 (4 ms)
 [ RUN      ] Darwin.Creature_Isempty_1
-[       OK ] Darwin.Creature_Isempty_1 (4 ms)
+[       OK ] Darwin.Creature_Isempty_1 (5 ms)
 [ RUN      ] Darwin.Creature_Isempty_2
-[       OK ] Darwin.Creature_Isempty_2 (3 ms)
+[       OK ] Darwin.Creature_Isempty_2 (5 ms)
 [ RUN      ] Darwin.Creature_Isempty_3
-[       OK ] Darwin.Creature_Isempty_3 (3 ms)
+[       OK ] Darwin.Creature_Isempty_3 (4 ms)
 [ RUN      ] Darwin.Creature_go_1
-[       OK ] Darwin.Creature_go_1 (21 ms)
+[       OK ] Darwin.Creature_go_1 (29 ms)
 [ RUN      ] Darwin.Creature_go_2
-[       OK ] Darwin.Creature_go_2 (5 ms)
+[       OK ] Darwin.Creature_go_2 (7 ms)
 [ RUN      ] Darwin.Creature_go_3
-[       OK ] Darwin.Creature_go_3 (7 ms)
+[       OK ] Darwin.Creature_go_3 (8 ms)
 [ RUN      ] Darwin.Creature_my_turn_1
-[       OK ] Darwin.Creature_my_turn_1 (7 ms)
+[       OK ] Darwin.Creature_my_turn_1 (9 ms)
 [ RUN      ] Darwin.Creature_my_turn_2
-[       OK ] Darwin.Creature_my_turn_2 (6 ms)
+[       OK ] Darwin.Creature_my_turn_2 (8 ms)
 [ RUN      ] Darwin.Creature_my_turn_3
-[       OK ] Darwin.Creature_my_turn_3 (6 ms)
+[       OK ] Darwin.Creature_my_turn_3 (8 ms)
 [ RUN      ] Darwin.Species_constructor_1
 [       OK ] Darwin.Species_constructor_1 (3 ms)
 [ RUN      ] Darwin.Species_constructor_2
-[       OK ] Darwin.Species_constructor_2 (2 ms)
+[       OK ] Darwin.Species_constructor_2 (4 ms)
 [ RUN      ] Darwin.Species_constructor_3
-[       OK ] Darwin.Species_constructor_3 (4 ms)
+[       OK ] Darwin.Species_constructor_3 (5 ms)
 [ RUN      ] Darwin.Species_copy_1
-[       OK ] Darwin.Species_copy_1 (8 ms)
+[       OK ] Darwin.Species_copy_1 (11 ms)
 [ RUN      ] Darwin.Species_copy_2
-[       OK ] Darwin.Species_copy_2 (8 ms)
+[       OK ] Darwin.Species_copy_2 (10 ms)
 [ RUN      ] Darwin.Species_copy_3
-[       OK ] Darwin.Species_copy_3 (10 ms)
+[       OK ] Darwin.Species_copy_3 (13 ms)
 [ RUN      ] Darwin.Species_equal_1
-[       OK ] Darwin.Species_equal_1 (7 ms)
+[       OK ] Darwin.Species_equal_1 (9 ms)
 [ RUN      ] Darwin.Species_equal_2
-[       OK ] Darwin.Species_equal_2 (4 ms)
+[       OK ] Darwin.Species_equal_2 (6 ms)
 [ RUN      ] Darwin.Species_equal_3
-[       OK ] Darwin.Species_equal_3 (6 ms)
+[       OK ] Darwin.Species_equal_3 (8 ms)
 [ RUN      ] Darwin.Species_equal_4
-[       OK ] Darwin.Species_equal_4 (6 ms)
+[       OK ] Darwin.Species_equal_4 (8 ms)
 [ RUN      ] Darwin.Species_addstep_1
-[       OK ] Darwin.Species_addstep_1 (4 ms)
+[       OK ] Darwin.Species_addstep_1 (7 ms)
 [ RUN      ] Darwin.Species_addstep_2
-[       OK ] Darwin.Species_addstep_2 (2 ms)
+[       OK ] Darwin.Species_addstep_2 (3 ms)
 [ RUN      ] Darwin.Species_addstep_3
-[       OK ] Darwin.Species_addstep_3 (6 ms)
+[       OK ] Darwin.Species_addstep_3 (8 ms)
 [ RUN      ] Darwin.Species_getprogsize_1
-[       OK ] Darwin.Species_getprogsize_1 (4 ms)
+[       OK ] Darwin.Species_getprogsize_1 (5 ms)
 [ RUN      ] Darwin.Species_getprogsize_2
-[       OK ] Darwin.Species_getprogsize_2 (6 ms)
+[       OK ] Darwin.Species_getprogsize_2 (8 ms)
 [ RUN      ] Darwin.Species_getprogsize_3
-[       OK ] Darwin.Species_getprogsize_3 (3 ms)
+[       OK ] Darwin.Species_getprogsize_3 (4 ms)
 [ RUN      ] Darwin.Species_getstep_1
-[       OK ] Darwin.Species_getstep_1 (4 ms)
+[       OK ] Darwin.Species_getstep_1 (5 ms)
 [ RUN      ] Darwin.Species_getstep_2
-[       OK ] Darwin.Species_getstep_2 (6 ms)
+[       OK ] Darwin.Species_getstep_2 (8 ms)
 [ RUN      ] Darwin.Species_getstep_3
-[       OK ] Darwin.Species_getstep_3 (4 ms)
+[       OK ] Darwin.Species_getstep_3 (5 ms)
 [ RUN      ] Darwin.Species_getname_1
-[       OK ] Darwin.Species_getname_1 (2 ms)
+[       OK ] Darwin.Species_getname_1 (3 ms)
 [ RUN      ] Darwin.Species_getname_2
-[       OK ] Darwin.Species_getname_2 (4 ms)
+[       OK ] Darwin.Species_getname_2 (5 ms)
 [ RUN      ] Darwin.Species_getname_3
-[       OK ] Darwin.Species_getname_3 (2 ms)
+[       OK ] Darwin.Species_getname_3 (3 ms)
 [ RUN      ] Darwin.World_constructor_1
-[       OK ] Darwin.World_constructor_1 (16 ms)
+[       OK ] Darwin.World_constructor_1 (24 ms)
 [ RUN      ] Darwin.World_constructor_2
-[       OK ] Darwin.World_constructor_2 (4 ms)
+[       OK ] Darwin.World_constructor_2 (6 ms)
 [ RUN      ] Darwin.World_constructor_3
-[       OK ] Darwin.World_constructor_3 (3 ms)
+[       OK ] Darwin.World_constructor_3 (5 ms)
 [ RUN      ] Darwin.World_addCreature_1
-[       OK ] Darwin.World_addCreature_1 (6 ms)
+[       OK ] Darwin.World_addCreature_1 (8 ms)
 [ RUN      ] Darwin.World_addCreature_2
-[       OK ] Darwin.World_addCreature_2 (6 ms)
+[       OK ] Darwin.World_addCreature_2 (8 ms)
 [ RUN      ] Darwin.World_addCreature_3
-[       OK ] Darwin.World_addCreature_3 (8 ms)
+[       OK ] Darwin.World_addCreature_3 (10 ms)
 [ RUN      ] Darwin.World_give_turn_1
-[       OK ] Darwin.World_give_turn_1 (13 ms)
+[       OK ] Darwin.World_give_turn_1 (19 ms)
 [ RUN      ] Darwin.World_give_turn_2
-[       OK ] Darwin.World_give_turn_2 (11 ms)
+[       OK ] Darwin.World_give_turn_2 (16 ms)
 [ RUN      ] Darwin.World_give_turn_3
-[       OK ] Darwin.World_give_turn_3 (21 ms)
+[       OK ] Darwin.World_give_turn_3 (30 ms)
 [ RUN      ] Darwin.World_run_1
-[       OK ] Darwin.World_run_1 (12 ms)
+[       OK ] Darwin.World_run_1 (17 ms)
 [ RUN      ] Darwin.World_run_2
-[       OK ] Darwin.World_run_2 (14 ms)
+[       OK ] Darwin.World_run_2 (20 ms)
 [ RUN      ] Darwin.World_run_3
-[       OK ] Darwin.World_run_3 (9 ms)
+[       OK ] Darwin.World_run_3 (14 ms)
 [ RUN      ] Darwin.World_print_1
-[       OK ] Darwin.World_print_1 (5 ms)
+[       OK ] Darwin.World_print_1 (6 ms)
 [ RUN      ] Darwin.World_print_2
-[       OK ] Darwin.World_print_2 (4 ms)
+[       OK ] Darwin.World_print_2 (6 ms)
 [ RUN      ] Darwin.World_print_3
-[       OK ] Darwin.World_print_3 (6 ms)
-[----------] 68 tests from Darwin (462 ms total)
+[       OK ] Darwin.World_print_3 (8 ms)
+[----------] 68 tests from Darwin (632 ms total)
 
 [----------] Global test environment tear-down
-[==========] 68 tests from 1 test case ran. (512 ms total)
+[==========] 68 tests from 1 test case ran. (704 ms total)
 [  PASSED  ] 68 tests.
-==27483== 
-==27483== HEAP SUMMARY:
-==27483==     in use at exit: 0 bytes in 0 blocks
-==27483==   total heap usage: 2,946 allocs, 2,946 frees, 217,078 bytes allocated
-==27483== 
-==27483== All heap blocks were freed -- no leaks are possible
-==27483== 
-==27483== For counts of detected and suppressed errors, rerun with: -v
-==27483== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==28950== 
+==28950== HEAP SUMMARY:
+==28950==     in use at exit: 0 bytes in 0 blocks
+==28950==   total heap usage: 2,946 allocs, 2,946 frees, 217,090 bytes allocated
+==28950== 
+==28950== All heap blocks were freed -- no leaks are possible
+==28950== 
+==28950== For counts of detected and suppressed errors, rerun with: -v
+==28950== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 File 'Darwin.c++'
 Lines executed:96.46% of 198
 Branches executed:94.74% of 266
